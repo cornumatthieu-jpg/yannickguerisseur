@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Yannick Guérisseur — Magnétiseur, Énergéticien & Formateur à Abbeville et Amiens. Accompagnement énergétique personnalisé pour troubles physiques et émotionnels.">
+<title>Yannick Guérisseur — Magnétiseur, Énergéticien & Formateur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --color-primary: #2D5A47;
+  --color-secondary: #B8860B;
+  --color-accent: #D4A853;
+  --color-bg: #FAF8F4;
+  --color-bg-alt: #F0EDE6;
+  --color-text: #2C2C2C;
+  --color-text-light: #6B6B6B;
+  --color-white: #FFFFFF;
+  --color-dark: #1A1A1A;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.7;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+/* ====== SCROLLBAR ====== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 3px; }
+
+/* ====== ANIMATIONS ====== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(212,168,83,0.2); }
+  50% { box-shadow: 0 0 40px rgba(212,168,83,0.4); }
+}
+
+.anim-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.anim-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ====== NAVBAR ====== */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(250,248,244,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(45,90,71,0.08);
+  transition: all 0.4s ease;
+}
+.navbar.scrolled {
+  background: rgba(250,248,244,0.95);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 40px;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 14px;
+  text-decoration: none; color: var(--color-primary);
+}
+.nav-brand img {
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 2px solid var(--color-accent);
+  object-fit: cover;
+}
+.nav-brand-text {
+  font-family: var(--font-display);
+  font-size: 1.4rem; font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 8px;
+  list-style: none;
+}
+.nav-links a {
+  text-decoration: none; color: var(--color-text);
+  font-size: 0.88rem; font-weight: 500;
+  padding: 8px 16px; border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.nav-links a:hover {
+  color: var(--color-primary);
+  background: rgba(45,90,71,0.06);
+}
+.nav-cta {
+  background: var(--color-primary) !important;
+  color: var(--color-white) !important;
+  font-weight: 600 !important;
+  padding: 10px 24px !important;
+  border-radius: 50px !important;
+  transition: all 0.3s ease !important;
+}
+.nav-cta:hover {
+  background: #234A3A !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(45,90,71,0.3);
+}
+.menu-toggle {
+  display: none;
+  background: none; border: none; cursor: pointer;
+  flex-direction: column; gap: 5px; padding: 8px;
+}
+.menu-toggle span {
+  display: block; width: 24px; height: 2px;
+  background: var(--color-text); border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* ====== HERO ====== */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  padding: 120px 40px 80px;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -20%; right: -10%;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(212,168,83,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: -30%; left: -15%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(45,90,71,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 10s ease-in-out infinite reverse;
+}
+.hero-inner {
+  max-width: 1200px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  align-items: center; position: relative; z-index: 1;
+}
+.hero-content { animation: fadeInUp 1s ease 0.2s both; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(45,90,71,0.08);
+  color: var(--color-primary);
+  padding: 8px 18px; border-radius: 50px;
+  font-size: 0.82rem; font-weight: 600;
+  margin-bottom: 28px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.hero-badge::before {
+  content: '✦';
+  font-size: 0.7rem;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--color-dark);
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--color-primary);
+  position: relative;
+}
+.hero h1 em::after {
+  content: '';
+  position: absolute; bottom: 4px; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent), transparent);
+  border-radius: 2px;
+}
+.hero-subtitle {
+  font-family: var(--font-display);
+  font-size: 1.3rem; font-weight: 500;
+  color: var(--color-secondary);
+  margin-bottom: 24px;
+  font-style: italic;
+}
+.hero-desc {
+  font-size: 1.05rem;
+  color: var(--color-text-light);
+  max-width: 520px;
+  margin-bottom: 40px;
+  line-height: 1.8;
+}
+.hero-actions {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 4px 20px rgba(45,90,71,0.25);
+}
+.btn-primary:hover {
+  background: #234A3A;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(45,90,71,0.35);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid rgba(45,90,71,0.25);
+}
+.btn-outline:hover {
+  border-color: var(--color-primary);
+  background: rgba(45,90,71,0.04);
+}
+.hero-stats {
+  display: flex; gap: 40px;
+}
+.hero-stat {
+  text-align: left;
+}
+.hero-stat-number {
+  font-family: var(--font-display);
+  font-size: 2.4rem; font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: 0.82rem;
+  color: var(--color-text-light);
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.hero-visual {
+  position: relative;
+  animation: fadeIn 1.2s ease 0.5s both;
+}
+.hero-img-wrapper {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+}
+.hero-img-wrapper img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero-img-decoration {
+  position: absolute; top: -20px; right: -20px;
+  width: 140px; height: 140px;
+  border: 3px solid var(--color-accent);
+  border-radius: 20px;
+  z-index: -1;
+  opacity: 0.5;
+}
+.hero-img-badge {
+  position: absolute; bottom: -16px; left: -16px;
+  background: var(--color-white);
+  padding: 16px 24px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  display: flex; align-items: center; gap: 12px;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+.hero-img-badge-icon {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+}
+.hero-img-badge-text {
+  font-size: 0.82rem; font-weight: 600;
+  color: var(--color-dark);
+}
+.hero-img-badge-text span {
+  display: block; font-size: 0.72rem;
+  color: var(--color-text-light); font-weight: 400;
+}
+
+/* ====== SECTION GENERICS ====== */
+.section {
+  padding: 100px 40px;
+}
+.section-alt {
+  background: var(--color-bg-alt);
+}
+.section-dark {
+  background: var(--color-dark);
+  color: var(--color-white);
+}
+.section-inner {
+  max-width: 1200px; margin: 0 auto;
+}
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.section-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.78rem; font-weight: 600;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+.section-tag::before, .section-tag::after {
+  content: '—'; opacity: 0.3;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 600;
+  color: var(--color-dark);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.section-dark .section-title { color: var(--color-white); }
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--color-text-light);
+  max-width: 600px;
+  margin: 0 auto;
+}
+.section-dark .section-subtitle { color: rgba(255,255,255,0.6); }
+
+/* ====== PRESTATIONS ====== */
+.prestations-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.presta-card {
+  background: var(--color-white);
+  border-radius: 20px;
+  padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(45,90,71,0.06);
+}
+.presta-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+  border-color: rgba(45,90,71,0.15);
+}
+.presta-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.presta-card:hover::before { transform: scaleX(1); }
+.presta-icon {
+  width: 56px; height: 56px;
+  background: rgba(45,90,71,0.08);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+.presta-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem; font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--color-dark);
+}
+.presta-card p {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.presta-price {
+  display: flex; align-items: baseline; gap: 4px;
+  margin-bottom: 8px;
+}
+.presta-price-label {
+  font-size: 0.78rem; color: var(--color-text-light);
+}
+.presta-price-value {
+  font-family: var(--font-display);
+  font-size: 2rem; font-weight: 700;
+  color: var(--color-primary);
+}
+.presta-price-unit {
+  font-size: 0.85rem; color: var(--color-text-light);
+}
+.presta-detail {
+  font-size: 0.78rem;
+  color: var(--color-text-light);
+  margin-bottom: 20px;
+}
+.presta-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.88rem; font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: gap 0.3s ease;
+}
+.presta-link:hover { gap: 12px; }
+.presta-link::after { content: '→'; }
+
+/* ====== TROUBLES ====== */
+.troubles-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+.trouble-card {
+  background: rgba(45,90,71,0.04);
+  border-radius: 16px;
+  padding: 28px 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+.trouble-card:hover {
+  background: var(--color-white);
+  border-color: rgba(45,90,71,0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.trouble-icon {
+  width: 50px; height: 50px;
+  background: linear-gradient(135deg, var(--color-primary), #3d7a5f);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 1.3rem;
+}
+.trouble-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem; font-weight: 600;
+  color: var(--color-dark);
+  margin-bottom: 8px;
+}
+.trouble-card p {
+  font-size: 0.78rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+/* ====== ABOUT ====== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+}
+.about-img-wrapper {
+  position: relative;
+}
+.about-img {
+  width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  aspect-ratio: 3/4;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+.about-img-accent {
+  position: absolute; bottom: -16px; left: -16px;
+  width: 100px; height: 100px;
+  border: 3px solid var(--color-accent);
+  border-radius: 16px;
+  z-index: -1;
+  opacity: 0.4;
+}
+.about-content {}
+.about-content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  font-weight: 600;
+  color: var(--color-dark);
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+.about-content p {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.about-highlights {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px; margin: 36px 0;
+}
+.about-highlight {
+  text-align: center;
+  padding: 20px;
+  background: rgba(45,90,71,0.04);
+  border-radius: 16px;
+}
+.about-highlight-number {
+  font-family: var(--font-display);
+  font-size: 2.2rem; font-weight: 700;
+  color: var(--color-primary);
+}
+.about-highlight-label {
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+
+/* ====== AVIS / REVIEWS ====== */
+.reviews-container {
+  position: relative;
+  overflow: hidden;
+}
+.reviews-track {
+  display: flex;
+  gap: 24px;
+  animation: scroll-reviews 40s linear infinite;
+}
+@keyframes scroll-reviews {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.reviews-track:hover { animation-play-state: paused; }
+.review-card {
+  min-width: 360px; max-width: 360px;
+  background: var(--color-white);
+  border-radius: 20px;
+  padding: 32px;
+  border: 1px solid rgba(45,90,71,0.06);
+  flex-shrink: 0;
+}
+.review-stars {
+  color: var(--color-accent);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  letter-spacing: 2px;
+}
+.review-text {
+  font-size: 0.92rem;
+  color: var(--color-text);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.review-author {
+  display: flex; align-items: center; gap: 12px;
+}
+.review-avatar {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-weight: 700; font-size: 0.85rem;
+}
+.review-author-name {
+  font-weight: 600; font-size: 0.88rem;
+  color: var(--color-dark);
+}
+.review-source {
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+}
+.reviews-google-badge {
+  text-align: center; margin-top: 40px;
+}
+.reviews-google-badge a {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 28px; border-radius: 50px;
+  background: var(--color-white);
+  border: 1px solid rgba(45,90,71,0.1);
+  text-decoration: none; color: var(--color-text);
+  font-size: 0.88rem; font-weight: 600;
+  transition: all 0.3s ease;
+}
+.reviews-google-badge a:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+/* ====== CABINETS / LOCALISATION ====== */
+.cabinets-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.cabinet-card {
+  background: rgba(255,255,255,0.06);
+  border-radius: 20px;
+  padding: 40px;
+  border: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.cabinet-card:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: var(--color-accent);
+  transform: translateY(-4px);
+}
+.cabinet-icon {
+  width: 64px; height: 64px;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 1.5rem;
+}
+.cabinet-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem; font-weight: 600;
+  margin-bottom: 12px;
+}
+.cabinet-card p {
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 24px;
+}
+.cabinet-card a {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 28px;
+  background: var(--color-accent);
+  color: var(--color-dark);
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600; font-size: 0.88rem;
+  transition: all 0.3s ease;
+}
+.cabinet-card a:hover {
+  background: var(--color-white);
+  transform: translateY(-2px);
+}
+
+/* ====== FAQ ====== */
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.faq-item {
+  border-bottom: 1px solid rgba(45,90,71,0.08);
+}
+.faq-question {
+  width: 100%; padding: 24px 0;
+  display: flex; align-items: center; justify-content: space-between;
+  background: none; border: none; cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 1.15rem; font-weight: 600;
+  color: var(--color-dark);
+  text-align: left;
+  transition: color 0.3s ease;
+}
+.faq-question:hover { color: var(--color-primary); }
+.faq-toggle {
+  width: 32px; height: 32px; flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(45,90,71,0.06);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  color: var(--color-primary);
+}
+.faq-item.open .faq-toggle {
+  background: var(--color-primary);
+  color: white;
+  transform: rotate(45deg);
+}
+.faq-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+.faq-item.open .faq-answer {
+  max-height: 500px;
+  padding-bottom: 24px;
+}
+.faq-answer p {
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+  line-height: 1.8;
+}
+.faq-answer ul {
+  margin: 12px 0; padding-left: 20px;
+  list-style: none;
+}
+.faq-answer ul li {
+  position: relative; padding-left: 20px;
+  font-size: 0.92rem; color: var(--color-text-light);
+  line-height: 1.8;
+}
+.faq-answer ul li::before {
+  content: '✦';
+  position: absolute; left: 0;
+  color: var(--color-accent); font-size: 0.6rem;
+  top: 6px;
+}
+
+/* ====== CALENDRIER ====== */
+#cal-container {
+  background: white; border-radius: 20px;
+  padding: 32px; box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  max-width: 600px; margin: 0 auto;
+}
+#cal-prev, #cal-next {
+  background: none; border: 1px solid #e5e7eb;
+  border-radius: 10px; width: 40px; height: 40px;
+  cursor: pointer; font-size: 1.2rem; color: var(--color-text);
+  transition: all 0.2s;
+}
+#cal-prev:hover, #cal-next:hover {
+  background: var(--color-primary); color: white;
+  border-color: var(--color-primary);
+}
+.legend-dot { font-size: 0.82rem; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+.legend-dot.available { color: #22c55e; }
+.legend-dot.busy { color: #ef4444; }
+.legend-dot.appointment { color: #f59e0b; }
+
+/* ====== CONTACT FORM ====== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px; align-items: start;
+}
+.contact-info h3 {
+  font-family: var(--font-display);
+  font-size: 1.8rem; font-weight: 600;
+  color: var(--color-dark);
+  margin-bottom: 16px;
+}
+.contact-info p {
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+.contact-detail {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 20px;
+}
+.contact-detail-icon {
+  width: 48px; height: 48px;
+  background: rgba(45,90,71,0.08);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.contact-detail-text {
+  font-size: 0.92rem;
+  color: var(--color-text);
+}
+.contact-detail-text small {
+  display: block; color: var(--color-text-light);
+  font-size: 0.78rem;
+}
+.contact-form {
+  background: var(--color-white);
+  border-radius: 20px;
+  padding: 40px;
+  border: 1px solid rgba(45,90,71,0.06);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  font-size: 0.85rem; font-weight: 600;
+  color: var(--color-dark);
+  margin-bottom: 8px;
+}
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid rgba(45,90,71,0.12);
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--color-text);
+  background: var(--color-bg);
+  transition: all 0.3s ease;
+  outline: none;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(45,90,71,0.08);
+}
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ====== FOOTER ====== */
+.footer {
+  background: var(--color-dark);
+  color: rgba(255,255,255,0.6);
+  padding: 60px 40px 30px;
+}
+.footer-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 20px;
+}
+.footer-brand {
+  display: flex; align-items: center; gap: 12px;
+}
+.footer-brand img {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.footer-brand span {
+  font-family: var(--font-display);
+  font-size: 1.1rem; font-weight: 600;
+  color: white;
+}
+.footer-links {
+  display: flex; gap: 24px; flex-wrap: wrap;
+}
+.footer-links a {
+  color: rgba(255,255,255,0.5);
+  text-decoration: none; font-size: 0.82rem;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--color-accent); }
+.footer-copy {
+  width: 100%; text-align: center;
+  padding-top: 30px; margin-top: 30px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.78rem;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 1024px) {
+  .prestations-grid { grid-template-columns: repeat(2, 1fr); }
+  .troubles-grid { grid-template-columns: repeat(3, 1fr); }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { max-width: 400px; margin: 0 auto; }
+}
+@media (max-width: 768px) {
+  .section { padding: 60px 20px; }
+  .nav-inner { padding: 14px 20px; }
+  .nav-links { 
+    display: none; position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(250,248,244,0.98);
+    flex-direction: column; align-items: center;
+    justify-content: center; gap: 16px; z-index: 999;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { font-size: 1.2rem; padding: 14px 24px; }
+  .menu-toggle { display: flex; z-index: 1001; }
+  .hero { padding: 100px 20px 60px; min-height: auto; }
+  .hero-stats { gap: 24px; }
+  .hero-actions { flex-direction: column; }
+  .btn { width: 100%; justify-content: center; }
+  .prestations-grid { grid-template-columns: 1fr; }
+  .troubles-grid { grid-template-columns: 1fr 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .cabinets-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .review-card { min-width: 300px; max-width: 300px; }
+  .about-highlights { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .hero-visual { max-width: 320px; }
+}
+@media (max-width: 480px) {
+  .troubles-grid { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: column; gap: 16px; }
+}
+
+/* ====== EDITOR STYLES ====== */
+.etab {
+  flex: 1; padding: 10px 4px; border: none; background: none;
+  cursor: pointer; font-size: 12px; font-weight: 600; color: #666;
+  border-bottom: 2px solid transparent; transition: all 0.2s;
+}
+.etab.active { color: var(--color-primary); border-bottom-color: var(--color-primary); }
+.etab:hover { background: #f9f9f9; }
+</style>
+</head>
+<body>
+
+<!-- ====== NAVBAR ====== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <img src="https://yannickguerisseur.fr/wp-content/uploads/2025/12/Newlogo-papa-150x150.png" alt="Logo Yannick Guérisseur" data-editable-img="Logo">
+      <span class="nav-brand-text" data-editable="Nom marque">Yannick Guérisseur</span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#prestations">Prestations</a></li>
+      <li><a href="#troubles">Troubles</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#avis">Avis</a></li>
+      <li><a href="#calendrier">Disponibilités</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact" class="nav-cta">Prendre RDV</a></li>
+    </ul>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ====== HERO ====== -->
+<section class="hero" id="accueil">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge" data-editable="Badge hero">Abbeville · Amiens · Distance</div>
+      <h1 data-editable="Titre hero">Magnétiseur,<br><em>Énergéticien</em><br>& Formateur</h1>
+      <p class="hero-subtitle" data-editable="Sous-titre hero">Praticien en soins énergétiques</p>
+      <p class="hero-desc" data-editable="Description hero">Accompagnement énergétique personnalisé axé sur la prise en charge des troubles physiques et émotionnels, avec une approche ciblée et durable.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">✦ Prendre rendez-vous</a>
+        <a href="#prestations" class="btn btn-outline">Découvrir mes services</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-number">180+</div>
+          <div class="hero-stat-label">Avis 5 étoiles</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">10+</div>
+          <div class="hero-stat-label">Ans d'expérience</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">500+</div>
+          <div class="hero-stat-label">Personnes accompagnées</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-wrapper">
+        <img src="https://yannickguerisseur.fr/wp-content/uploads/2026/01/Photo11.png" alt="Yannick Guérisseur en séance" data-editable-img="Photo hero">
+      </div>
+      <div class="hero-img-decoration"></div>
+      <div class="hero-img-badge">
+        <div class="hero-img-badge-icon">⭐</div>
+        <div class="hero-img-badge-text">
+          Note 5/5 sur Google
+          <span>Basée sur 180 avis</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== PRESTATIONS ====== -->
+<section class="section section-alt" id="prestations">
+  <div class="section-inner">
+    <div class="section-header anim-in">
+      <div class="section-tag">Services</div>
+      <h2 class="section-title" data-editable="Titre prestations">Mes Prestations</h2>
+      <p class="section-subtitle" data-editable="Sous-titre prestations">Des soins adaptés à vos besoins, en cabinet, à distance ou en groupe.</p>
+    </div>
+    <div class="prestations-grid">
+      <div class="presta-card anim-in">
+        <div class="presta-icon">🤲</div>
+        <h3 data-editable="Titre séance cabinet">Séances Cabinet</h3>
+        <p data-editable="Desc séance cabinet">Accompagnement personnalisé en présentiel pour agir directement sur les troubles physiques et émotionnels.</p>
+        <div class="presta-price">
+          <span class="presta-price-label">À partir de&nbsp;</span>
+          <span class="presta-price-value">50</span>
+          <span class="presta-price-unit">€</span>
+        </div>
+        <p class="presta-detail">Adultes · Enfants 35€ (- 2 ans)</p>
+        <a href="#contact" class="presta-link">Prendre rendez-vous</a>
+      </div>
+      <div class="presta-card anim-in">
+        <div class="presta-icon">📡</div>
+        <h3 data-editable="Titre séance distance">Séances à Distance</h3>
+        <p data-editable="Desc séance distance">Les mêmes effets qu'en cabinet : action ciblée sur les troubles physiques et émotionnels, où que vous soyez.</p>
+        <div class="presta-price">
+          <span class="presta-price-label">À partir de&nbsp;</span>
+          <span class="presta-price-value">50</span>
+          <span class="presta-price-unit">€</span>
+        </div>
+        <p class="presta-detail">Adultes · Enfants · Animaux</p>
+        <a href="#contact" class="presta-link">Prendre rendez-vous</a>
+      </div>
+      <div class="presta-card anim-in">
+        <div class="presta-icon">👥</div>
+        <h3 data-editable="Titre ateliers">Ateliers de Groupe</h3>
+        <p data-editable="Desc ateliers">Constellation familiale : libérez les blocages inconscients issus de l'histoire familiale pour retrouver équilibre et apaisement.</p>
+        <div class="presta-price">
+          <span class="presta-price-label">À partir de&nbsp;</span>
+          <span class="presta-price-value">50</span>
+          <span class="presta-price-unit">€</span>
+        </div>
+        <p class="presta-detail">Représentant · Constellé 110€</p>
+        <a href="#contact" class="presta-link">Participer</a>
+      </div>
+      <div class="presta-card anim-in">
+        <div class="presta-icon">🎓</div>
+        <h3 data-editable="Titre formations">Cursus Formations</h3>
+        <p data-editable="Desc formations">Apprenez à pratiquer des soins énergétiques avec des outils concrets en situation réelle. Progressez à votre rythme.</p>
+        <div class="presta-price">
+          <span class="presta-price-label">À partir de&nbsp;</span>
+          <span class="presta-price-value">250</span>
+          <span class="presta-price-unit">€</span>
+        </div>
+        <p class="presta-detail">Cursus en 3 niveaux de maîtrise</p>
+        <a href="#contact" class="presta-link">Me former</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== TROUBLES ====== -->
+<section class="section" id="troubles">
+  <div class="section-inner">
+    <div class="section-header anim-in">
+      <div class="section-tag">Spécialités</div>
+      <h2 class="section-title" data-editable="Titre troubles">Troubles que je traite</h2>
+      <p class="section-subtitle" data-editable="Sous-titre troubles">Aperçu des familles de troubles les plus courantes que je prends en charge.</p>
+    </div>
+    <div class="troubles-grid">
+      <div class="trouble-card anim-in">
+        <div class="trouble-icon">🦴</div>
+        <h3>Physiques & Musculaires</h3>
+        <p>Dos, articulations, tensions musculaires, fractures</p>
+      </div>
+      <div class="trouble-card anim-in">
+        <div class="trouble-icon">🌿</div>
+        <h3>Peau & Inconforts</h3>
+        <p>Maladies de peau, irritations, rougeurs, coupure de feu</p>
+      </div>
+      <div class="trouble-card anim-in">
+        <div class="trouble-icon">👶</div>
+        <h3>Bébés & Enfants</h3>
+        <p>Sommeil, agitations, inconforts digestifs, poussées dentaires</p>
+      </div>
+      <div class="trouble-card anim-in">
+        <div class="trouble-icon">🧠</div>
+        <h3>Émotionnels & Stress</h3>
+        <p>Stress, angoisses, hypersensibilité, phobies</p>
+      </div>
+      <div class="trouble-card anim-in">
+        <div class="trouble-icon">💆</div>
+        <h3>Tête & Mental</h3>
+        <p>Maux de tête, migraines, tensions, surmenage</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== ABOUT ====== -->
+<section class="section section-alt" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img-wrapper anim-in">
+        <img src="https://yannickguerisseur.fr/wp-content/uploads/2025/11/Papa.jpg" alt="Yannick Guérisseur" class="about-img" data-editable-img="Photo à propos">
+        <div class="about-img-accent"></div>
+      </div>
+      <div class="about-content anim-in">
+        <div class="section-tag">À propos</div>
+        <h2 data-editable="Titre à propos">Yannick Guérisseur</h2>
+        <p data-editable="Bio paragraphe 1">Guérisseur depuis 10 ans et formateur reconnu dans le domaine énergétique, j'ai développé une approche complète que je transmets à travers un cursus de formations professionnelles structurées et personnalisées.</p>
+        <p data-editable="Bio paragraphe 2">Le Cursus Énergéticien se compose de 3 niveaux de maîtrise, allant des essentiels jusqu'à la méthode TELIBE®, une technique de libération émotionnelle exclusive issue de mon expérience et de ma pratique sur le terrain. Je forme aussi sur d'autres sujets complémentaires.</p>
+        <p data-editable="Bio paragraphe 3">J'anime également des ateliers de groupe dédiés à la compréhension et à la libération des mémoires familiales.</p>
+        <div class="about-highlights">
+          <div class="about-highlight">
+            <div class="about-highlight-number">10+</div>
+            <div class="about-highlight-label">Années d'expérience</div>
+          </div>
+          <div class="about-highlight">
+            <div class="about-highlight-number">3</div>
+            <div class="about-highlight-label">Niveaux de formation</div>
+          </div>
+          <div class="about-highlight">
+            <div class="about-highlight-number">1</div>
+            <div class="about-highlight-label">Méthode unique TELIBE®</div>
+          </div>
+        </div>
+        <a href="#contact" class="btn btn-primary">✦ Me contacter</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== AVIS ====== -->
+<section class="section" id="avis">
+  <div class="section-inner">
+    <div class="section-header anim-in">
+      <div class="section-tag">Témoignages</div>
+      <h2 class="section-title" data-editable="Titre avis">Ils m'ont fait confiance</h2>
+      <p class="section-subtitle" data-editable="Sous-titre avis">Note 5/5 basée sur 180 avis Google vérifiés.</p>
+    </div>
+    <div class="reviews-container">
+      <div class="reviews-track" id="reviews-track">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Après trois séances avec Yannick, mes problèmes de sommeil ont disparu et je me sens plus apaisée. Un grand merci !</p>
+          <div class="review-author">
+            <div class="review-avatar">É</div>
+            <div>
+              <div class="review-author-name">Émilie</div>
+              <div class="review-source">Avis Google</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">J'ai participé à une constellation accompagnée par Yannick et j'en ressors agréablement surprise. Cette expérience m'a fait un bien fou. Yannick guide avec beaucoup de justesse et de bienveillance.</p>
+          <div class="review-author">
+            <div class="review-avatar">M</div>
+            <div>
+              <div class="review-author-name">Mélanie H.</div>
+              <div class="review-source">Avis Google</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">J'ai vécu ce week-end une constellation familiale. Ça vaut vraiment le coup de faire cette expérience. Yannick est bienveillant pendant les séances. N'hésitez pas à faire cette expérience.</p>
+          <div class="review-author">
+            <div class="review-avatar">L</div>
+            <div>
+              <div class="review-author-name">Lysiane L.</div>
+              <div class="review-source">Avis Google</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Expérience formidable avec des constellés et représentants. Une prise de conscience ! Yannick reste le capitaine ! Je recommande très chaleureusement.</p>
+          <div class="review-author">
+            <div class="review-avatar">F</div>
+            <div>
+              <div class="review-author-name">Fabienne M.</div>
+              <div class="review-source">Avis Google</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Ce stage m'a profondément touchée. Il a été intense, parfois bouleversant. Quelque chose de très ancien s'est libéré en moi. Je repars soulagée, plus légère et très reconnaissante.</p>
+          <div class="review-author">
+            <div class="review-avatar">G</div>
+            <div>
+              <div class="review-author-name">Gaëlle</div>
+              <div class="review-source">Avis Google</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Suite à des problèmes de santé importants au dos, Yannick m'a été d'un grand soulagement pour apaiser les douleurs. Très professionnel, agréable, sympathique et à l'écoute !</p>
+          <div class="review-author">
+            <div class="review-avatar">S</div>
+            <div>
+              <div class="review-author-name">Sylvain B.</div>
+              <div class="review-source">Avis Google</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Pour moi, cela a été une expérience profondément bouleversante, enrichissante et libératrice. Les bienfaits ont été presque immédiats, comme si quelque chose s'était remis à sa juste place.</p>
+          <div class="review-author">
+            <div class="review-avatar">C</div>
+            <div>
+              <div class="review-author-name">Christelle C.</div>
+              <div class="review-source">Avis Google</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">J'ai vécu une expérience hors du commun, tout simplement incroyable. Une parenthèse unique que je ne suis pas près d'oublier… et que je compte bien renouveler !</p>
+          <div class="review-author">
+            <div class="review-avatar">K</div>
+            <div>
+              <div class="review-author-name">Kelly K.</div>
+              <div class="review-source">Avis Google</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-google-badge anim-in">
+      <a href="https://g.page/r/Cf2R124l5jEvEBE/review" target="_blank" rel="noopener">
+        ⭐ Laisser un avis sur Google
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CABINETS ====== -->
+<section class="section section-dark" id="cabinets">
+  <div class="section-inner">
+    <div class="section-header anim-in">
+      <div class="section-tag" style="color: var(--color-accent);">Localisation</div>
+      <h2 class="section-title" data-editable="Titre cabinets">Trouver le Cabinet</h2>
+      <p class="section-subtitle" data-editable="Sous-titre cabinets">J'effectue mes séances dans 2 cabinets différents. Choisissez et lancez l'itinéraire en un clic.</p>
+    </div>
+    <div class="cabinets-grid">
+      <div class="cabinet-card anim-in">
+        <div class="cabinet-icon">📍</div>
+        <h3 data-editable="Titre cabinet 1">Abbeville</h3>
+        <p data-editable="Adresse cabinet 1">30 Boulevard Vauban, 80100 Abbeville</p>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=30+Boulevard+Vauban+Abbeville+80100" target="_blank" rel="noopener">Lancer l'itinéraire →</a>
+      </div>
+      <div class="cabinet-card anim-in">
+        <div class="cabinet-icon">📍</div>
+        <h3 data-editable="Titre cabinet 2">Amiens</h3>
+        <p data-editable="Adresse cabinet 2">70 rue Laurendeau, 80000 Amiens</p>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=70+rue+Laurendeau+Amiens+80000" target="_blank" rel="noopener">Lancer l'itinéraire →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CALENDRIER ====== -->
+<section class="section section-alt" id="calendrier">
+  <div class="section-inner">
+    <div class="section-header anim-in">
+      <div class="section-tag">Planning</div>
+      <h2 class="section-title" data-editable="Titre calendrier">Mes Disponibilités</h2>
+      <p class="section-subtitle" data-editable="Sous-titre calendrier">Consultez mes créneaux disponibles et contactez-moi pour réserver.</p>
+    </div>
+    <div style="display: flex; gap: 20px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap;">
+      <span class="legend-dot available">● Disponible</span>
+      <span class="legend-dot busy">● Indisponible</span>
+      <span class="legend-dot appointment">● Sur RDV</span>
+    </div>
+    <div id="cal-container" class="anim-in">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+        <button id="cal-prev" onclick="calPrev()" aria-label="Mois précédent">‹</button>
+        <span id="cal-month-label" style="font-family: var(--font-display); font-weight: 700; font-size: 1.2rem;"></span>
+        <button id="cal-next" onclick="calNext()" aria-label="Mois suivant">›</button>
+      </div>
+      <div id="cal-days-header" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 8px;"></div>
+      <div id="cal-grid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px;"></div>
+    </div>
+    <div id="cal-editor-hint" style="margin-top: 16px; font-size: 0.82rem; color: var(--color-primary); display: none; text-align: center;">
+      ✦ Mode éditeur actif — Cliquez sur un jour pour changer son statut
+    </div>
+  </div>
+</section>
+
+<!-- ====== FAQ ====== -->
+<section class="section" id="faq">
+  <div class="section-inner">
+    <div class="section-header anim-in">
+      <div class="section-tag">Questions</div>
+      <h2 class="section-title" data-editable="Titre FAQ">Foire aux Questions</h2>
+      <p class="section-subtitle" data-editable="Sous-titre FAQ">Les réponses aux questions les plus courantes autour du magnétisme et de mes services.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item anim-in">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Qu'est-ce qu'un magnétiseur et comment ça fonctionne ?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Un magnétiseur est une personne capable de canaliser et transmettre une énergie destinée à apaiser les troubles du corps et de l'esprit. Le magnétisme agit comme un soutien énergétique complémentaire, sans se substituer à la médecine. Yannick pratique un magnétisme intuitif et respectueux, basé sur l'écoute, l'observation et la lecture énergétique.</p>
+        </div>
+      </div>
+      <div class="faq-item anim-in">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Comment se déroule une séance de magnétisme ?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Une séance commence par un échange pour comprendre votre état, vos besoins ou vos blocages. Vous restez habillé(e) et vous vous installez confortablement. Yannick travaille ensuite par apposition des mains ou par techniques de canalisation pour rééquilibrer les flux énergétiques. Le déroulement est calme, doux, et adapté à votre ressenti.</p>
+        </div>
+      </div>
+      <div class="faq-item anim-in">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Quels sont les bienfaits du magnétisme ?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Le magnétisme peut aider à :</p>
+          <ul>
+            <li>Apaiser le stress et l'anxiété</li>
+            <li>Favoriser un meilleur sommeil</li>
+            <li>Réduire certaines tensions physiques</li>
+            <li>Améliorer la circulation énergétique</li>
+            <li>Libérer certaines charges émotionnelles</li>
+            <li>Renforcer l'ancrage et la détente</li>
+          </ul>
+        </div>
+      </div>
+      <div class="faq-item anim-in">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Qu'est-ce qu'une constellation familiale ?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Les constellations familiales sont une méthode d'exploration systémique qui met en lumière les dynamiques inconscientes d'un système familial. À travers une représentation symbolique, elles permettent de mieux comprendre certains schémas, blocages ou répétitions. Yannick propose des constellations guidées, sécurisées et respectueuses du rythme de chacun.</p>
+        </div>
+      </div>
+      <div class="faq-item anim-in">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Quels sont les bienfaits du LaHoChi ?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Le LaHoChi est une pratique énergétique douce qui apporte souvent :</p>
+          <ul>
+            <li>Une détente profonde et un apaisement immédiat</li>
+            <li>Une réduction du stress et du mental</li>
+            <li>Un meilleur ancrage émotionnel</li>
+            <li>Une harmonisation du champ énergétique</li>
+            <li>Une sensation de clarté, de calme et de recentrage</li>
+          </ul>
+        </div>
+      </div>
+      <div class="faq-item anim-in">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Qu'est-ce que le Cursus Énergéticien ?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>C'est une formation complète en trois niveaux pour apprendre les bases, les techniques avancées et les pratiques expertes du magnétisme et de l'énergétique. Yannick a construit ce cursus pour transmettre une progression solide, moderne et accessible à tous, incluant la méthode exclusive TELIBE®.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CONTACT ====== -->
+<section class="section section-alt" id="contact">
+  <div class="section-inner">
+    <div class="section-header anim-in">
+      <div class="section-tag">Contact</div>
+      <h2 class="section-title" data-editable="Titre contact">Prendre Rendez-vous</h2>
+      <p class="section-subtitle" data-editable="Sous-titre contact">Une question, un besoin ? Remplissez le formulaire, je vous répondrai rapidement.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info anim-in">
+        <h3 data-editable="Contact info titre">Parlons de votre bien-être</h3>
+        <p data-editable="Contact info desc">N'hésitez pas à me contacter pour toute question concernant les séances, les formations ou les ateliers. Je vous répondrai avec plaisir.</p>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📍</div>
+          <div class="contact-detail-text">
+            Cabinet Abbeville
+            <small>30 Boulevard Vauban, 80100</small>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📍</div>
+          <div class="contact-detail-text">
+            Cabinet Amiens
+            <small>70 rue Laurendeau, 80000</small>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🌐</div>
+          <div class="contact-detail-text">
+            Site web
+            <small>yannickguerisseur.fr</small>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form anim-in" id="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="c-name">Nom complet *</label>
+            <input type="text" id="c-name" placeholder="Votre nom" required>
+          </div>
+          <div class="form-group">
+            <label for="c-email">Email *</label>
+            <input type="email" id="c-email" placeholder="votre@email.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="c-phone">Téléphone</label>
+            <input type="tel" id="c-phone" placeholder="06 XX XX XX XX">
+          </div>
+          <div class="form-group">
+            <label for="c-subject">Objet *</label>
+            <select id="c-subject" required>
+              <option value="">Choisir un sujet...</option>
+              <option value="Séance cabinet">Séance en cabinet</option>
+              <option value="Séance distance">Séance à distance</option>
+              <option value="Atelier groupe">Atelier de groupe</option>
+              <option value="Formation">Formation</option>
+              <option value="Autre">Autre question</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="c-message">Message *</label>
+          <textarea id="c-message" placeholder="Décrivez votre besoin ou posez vos questions..." required></textarea>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="sendContact()" style="width: 100%; justify-content: center; font-size: 1rem;">
+          ✦ Envoyer le message
+        </button>
+        <div id="contact-confirmation" style="display:none; margin-top: 16px; padding: 16px; background: rgba(34,197,94,0.08); border-radius: 12px; text-align: center; color: #16a34a; font-weight: 600; font-size: 0.92rem;">
+          ✓ Message prêt ! Votre client mail va s'ouvrir pour l'envoi.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="https://yannickguerisseur.fr/wp-content/uploads/2025/12/Newlogo-papa-150x150.png" alt="Logo" data-editable-img="Logo footer">
+      <span data-editable="Nom footer">Yannick Guérisseur</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://yannickguerisseur.fr/mentions-legales/">Mentions légales</a>
+      <a href="https://yannickguerisseur.fr/politique-de-confidentialite-rgpd">RGPD</a>
+      <a href="https://yannickguerisseur.fr/politique-de-cookies">Cookies</a>
+      <a href="https://yannickguerisseur.fr/wp-content/uploads/2025/12/CONDITIONS-GENERALES-DE-VENTES-YGS.pdf">CGVS</a>
+      <a href="https://yannickguerisseur.fr/wp-content/uploads/2025/12/CGV-formation-YG-2026.pdf">CGVF</a>
+    </div>
+    <div class="footer-copy">
+      © 2025 – Yannick Le Bourhis – Tous droits réservés
+    </div>
+  </div>
+</footer>
+
+<!-- ====== EDITOR PANEL ====== -->
+<button id="editor-toggle" style="
+  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  background: var(--color-primary); color: white; border: none; border-radius: 50px;
+  padding: 14px 22px; cursor: pointer; font-size: 14px; font-weight: 600;
+  box-shadow: 0 4px 20px rgba(45,90,71,0.4); transition: all 0.3s;
+  font-family: var(--font-body);
+" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+  🛠️ Modifier
+</button>
+
+<div id="editor-panel" style="
+  position: fixed; right: -400px; top: 0; width: 380px; height: 100vh;
+  background: #fff; box-shadow: -4px 0 30px rgba(0,0,0,0.15);
+  z-index: 9998; transition: right 0.3s ease; overflow-y: auto;
+  font-family: var(--font-body); padding: 0;
+">
+  <div style="background: var(--color-primary); color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+    <span style="font-weight: 700; font-size: 16px;">✏️ Éditeur de site</span>
+    <button onclick="closeEditor()" style="background:none;border:none;color:white;font-size:20px;cursor:pointer;">×</button>
+  </div>
+  <div id="editor-tabs" style="display:flex; border-bottom: 1px solid #eee;">
+    <button class="etab active" onclick="showTab('texts')" data-tab="texts">✏️ Textes</button>
+    <button class="etab" onclick="showTab('images')" data-tab="images">🖼️ Images</button>
+    <button class="etab" onclick="showTab('colors')" data-tab="colors">🎨 Couleurs</button>
+    <button class="etab" onclick="showTab('calendar')" data-tab="calendar">📅 Calendrier</button>
+  </div>
+  <div id="tab-texts" class="tab-content" style="padding: 16px;"></div>
+  <div id="tab-images" class="tab-content" style="padding: 16px; display:none;"></div>
+  <div id="tab-colors" class="tab-content" style="padding: 16px; display:none;"></div>
+  <div id="tab-calendar" class="tab-content" style="padding: 16px; display:none;">
+    <p style="font-size:13px;color:#444;margin-bottom:16px;">
+      Cliquez sur les jours du calendrier pour définir vos disponibilités :
+    </p>
+    <button onclick="enableCalEditor()" style="
+      width: 100%; padding: 12px; background: var(--color-primary); color: white;
+      border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-family: var(--font-body);
+    ">📅 Activer l'édition du calendrier</button>
+    <div style="margin-top: 16px; font-size: 12px; color: #666;">
+      <div style="margin-bottom: 6px;"><span style="color:#22c55e;">●</span> 1 clic = Disponible</div>
+      <div style="margin-bottom: 6px;"><span style="color:#ef4444;">●</span> 2 clics = Indisponible</div>
+      <div style="margin-bottom: 6px;"><span style="color:#f59e0b;">●</span> 3 clics = Sur RDV</div>
+      <div><span style="color:#999;">●</span> 4 clics = Effacer</div>
+    </div>
+  </div>
+  <div style="padding: 16px; border-top: 1px solid #eee; position: sticky; bottom: 0; background: white;">
+    <button onclick="downloadSite()" style="
+      width: 100%; padding: 14px; background: #22c55e; color: white;
+      border: none; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 14px;
+      font-family: var(--font-body);
+    ">💾 Télécharger mon site</button>
+  </div>
+</div>
+
+<script>
+// ===== NAVBAR SCROLL =====
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const navbar = document.getElementById('navbar');
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ===== MOBILE MENU =====
+document.getElementById('menu-toggle').addEventListener('click', () => {
+  document.getElementById('nav-links').classList.toggle('open');
+});
+document.querySelectorAll('#nav-links a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('nav-links').classList.remove('open');
+  });
+});
+
+// ===== SCROLL ANIMATIONS =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.anim-in').forEach(el => observer.observe(el));
+
+// ===== REVIEWS INFINITE SCROLL =====
+(function() {
+  const track = document.getElementById('reviews-track');
+  if (track) {
+    const clone = track.innerHTML;
+    track.innerHTML = clone + clone;
+  }
+})();
+
+// ===== FAQ =====
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// ===== CONTACT FORM =====
+function sendContact() {
+  const name = document.getElementById('c-name').value;
+  const email = document.getElementById('c-email').value;
+  const phone = document.getElementById('c-phone').value;
+  const subject = document.getElementById('c-subject').value;
+  const message = document.getElementById('c-message').value;
+
+  if (!name || !email || !subject || !message) {
+    alert('Veuillez remplir tous les champs obligatoires.');
+    return;
+  }
+
+  const body = `Bonjour Yannick,%0D%0A%0D%0AJe me permets de vous contacter via votre site web.%0D%0A%0D%0ANom : ${encodeURIComponent(name)}%0D%0AEmail : ${encodeURIComponent(email)}%0D%0ATéléphone : ${encodeURIComponent(phone || 'Non renseigné')}%0D%0A%0D%0AMessage :%0D%0A${encodeURIComponent(message)}%0D%0A%0D%0ACordialement,%0D%0A${encodeURIComponent(name)}`;
+  
+  window.location.href = `mailto:contact@yannickguerisseur.fr?subject=${encodeURIComponent(subject + ' – via site web')}&body=${body}`;
+  document.getElementById('contact-confirmation').style.display = 'block';
+}
+
+// ===== CALENDAR =====
+const CAL_STATES = { 0: 'none', 1: 'available', 2: 'busy', 3: 'appointment' };
+const CAL_COLORS = { none: '#f3f4f6', available: '#22c55e', busy: '#ef4444', appointment: '#f59e0b' };
+const CAL_LABELS = { none: '', available: 'Dispo', busy: 'Indispo', appointment: 'RDV' };
+
+let calYear = new Date().getFullYear();
+let calMonth = new Date().getMonth();
+let calData = JSON.parse(localStorage.getItem('calData') || '{}');
+let calEditorMode = false;
+
+const DAYS_FR = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
+const MONTHS_FR = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+
+function calRender() {
+  document.getElementById('cal-month-label').textContent = MONTHS_FR[calMonth] + ' ' + calYear;
+  const daysHeader = document.getElementById('cal-days-header');
+  daysHeader.innerHTML = DAYS_FR.map(d => '<div style="text-align:center;font-size:0.75rem;font-weight:700;color:var(--color-text-light);padding:6px;">' + d + '</div>').join('');
+  const grid = document.getElementById('cal-grid');
+  grid.innerHTML = '';
+  const firstDay = new Date(calYear, calMonth, 1);
+  const lastDay = new Date(calYear, calMonth + 1, 0);
+  let startOffset = firstDay.getDay() - 1;
+  if (startOffset < 0) startOffset = 6;
+  for (let i = 0; i < startOffset; i++) grid.innerHTML += '<div></div>';
+  const today = new Date();
+  for (let d = 1; d <= lastDay.getDate(); d++) {
+    const key = calYear + '-' + calMonth + '-' + d;
+    const state = calData[key] || 'none';
+    const isToday = d === today.getDate() && calMonth === today.getMonth() && calYear === today.getFullYear();
+    const isPast = new Date(calYear, calMonth, d) < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    grid.innerHTML += '<div onclick="calToggle(' + d + ')" style="text-align:center;padding:10px 4px;border-radius:10px;cursor:' + (calEditorMode ? 'pointer' : 'default') + ';background:' + CAL_COLORS[state] + ';color:' + (state === 'none' ? 'var(--color-text-light)' : 'white') + ';font-size:0.85rem;font-weight:' + (isToday ? '800' : '500') + ';opacity:' + (isPast ? '0.35' : '1') + ';border:' + (isToday ? '2px solid var(--color-primary)' : '2px solid transparent') + ';transition:transform 0.15s;min-height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;" onmouseover="if(!' + isPast + ')this.style.transform=\'scale(1.08)\'" onmouseout="this.style.transform=\'scale(1)\'"><span>' + d + '</span>' + (state !== 'none' ? '<span style="font-size:0.6rem;opacity:0.9;">' + CAL_LABELS[state] + '</span>' : '') + '</div>';
+  }
+}
+function calToggle(day) {
+  if (!calEditorMode) return;
+  const key = calYear + '-' + calMonth + '-' + day;
+  const states = ['none', 'available', 'busy', 'appointment'];
+  const current = calData[key] || 'none';
+  calData[key] = states[(states.indexOf(current) + 1) % states.length];
+  localStorage.setItem('calData', JSON.stringify(calData));
+  calRender();
+}
+function calPrev() { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } calRender(); }
+function calNext() { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } calRender(); }
+function enableCalEditor() {
+  calEditorMode = true;
+  document.getElementById('cal-editor-hint').style.display = 'block';
+  calRender();
+}
+document.addEventListener('DOMContentLoaded', calRender);
+
+// ===== EDITOR =====
+document.getElementById('editor-toggle').addEventListener('click', () => {
+  const panel = document.getElementById('editor-panel');
+  const isOpen = panel.style.right === '0px';
+  panel.style.right = isOpen ? '-400px' : '0px';
+  if (!isOpen) initEditor();
+});
+function closeEditor() { document.getElementById('editor-panel').style.right = '-400px'; }
+
+function showTab(name) {
+  document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+  document.querySelectorAll('.etab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).style.display = 'block';
+  document.querySelector('[data-tab="' + name + '"]').classList.add('active');
+}
+
+function initEditor() {
+  // Texts
+  const tc = document.getElementById('tab-texts');
+  tc.innerHTML = '';
+  document.querySelectorAll('[data-editable]').forEach(el => {
+    const label = el.dataset.editable;
+    const isLong = el.tagName === 'P' || el.dataset.editableType === 'textarea';
+    const field = isLong
+      ? '<textarea rows="3" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:8px;font-size:13px;resize:vertical;font-family:var(--font-body);">' + el.innerText + '</textarea>'
+      : '<input type="text" value="' + el.innerText.replace(/"/g, '&quot;') + '" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:var(--font-body);">';
+    tc.innerHTML += '<div style="margin-bottom:16px;"><label style="font-size:12px;font-weight:600;color:#666;display:block;margin-bottom:4px;">' + label + '</label>' + field + '</div>';
+  });
+  tc.querySelectorAll('input, textarea').forEach((input, i) => {
+    const editables = document.querySelectorAll('[data-editable]');
+    input.addEventListener('input', () => { editables[i].innerText = input.value; });
+  });
+
+  // Images
+  const ic = document.getElementById('tab-images');
+  ic.innerHTML = '';
+  document.querySelectorAll('[data-editable-img]').forEach(el => {
+    const label = el.dataset.editableImg;
+    const currentSrc = el.tagName === 'IMG' ? el.src : '';
+    ic.innerHTML += '<div style="margin-bottom:20px;"><label style="font-size:12px;font-weight:600;color:#666;display:block;margin-bottom:6px;">' + label + '</label><input type="url" placeholder="Coller l\'URL..." value="' + currentSrc + '" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:8px;font-size:13px;margin-bottom:6px;font-family:var(--font-body);"><div style="font-size:11px;color:#999;margin-bottom:6px;">— ou —</div><input type="file" accept="image/*" style="font-size:12px;"></div>';
+  });
+  ic.querySelectorAll('[style*="margin-bottom:20px"]').forEach((div, i) => {
+    const imgs = document.querySelectorAll('[data-editable-img]');
+    const urlI = div.querySelector('input[type="url"]');
+    const fileI = div.querySelector('input[type="file"]');
+    if (urlI) urlI.addEventListener('change', () => {
+      if (imgs[i].tagName === 'IMG') imgs[i].src = urlI.value;
+      else imgs[i].style.backgroundImage = 'url(' + urlI.value + ')';
+    });
+    if (fileI) fileI.addEventListener('change', (e) => {
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        if (imgs[i].tagName === 'IMG') imgs[i].src = ev.target.result;
+        else imgs[i].style.backgroundImage = 'url(' + ev.target.result + ')';
+        if (urlI) urlI.value = '(fichier local)';
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    });
+  });
+
+  // Colors
+  const cc = document.getElementById('tab-colors');
+  const root = document.documentElement;
+  const vars = [
+    { key: '--color-primary', label: 'Couleur principale' },
+    { key: '--color-secondary', label: 'Couleur secondaire' },
+    { key: '--color-accent', label: 'Couleur d\'accent' },
+    { key: '--color-bg', label: 'Fond de page' },
+    { key: '--color-text', label: 'Couleur du texte' },
+  ];
+  cc.innerHTML = vars.map(v => '<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;"><input type="color" value="' + (getComputedStyle(root).getPropertyValue(v.key).trim() || '#000000') + '" style="width:44px;height:36px;border:none;cursor:pointer;border-radius:8px;" data-var="' + v.key + '"><label style="font-size:13px;color:#444;">' + v.label + '</label></div>').join('');
+  cc.querySelectorAll('input[type="color"]').forEach(input => {
+    input.addEventListener('input', () => { root.style.setProperty(input.dataset.var, input.value); });
+  });
+}
+
+function downloadSite() {
+  const panel = document.getElementById('editor-panel');
+  const btn = document.getElementById('editor-toggle');
+  panel.style.right = '-400px';
+  btn.style.display = 'none';
+  setTimeout(() => {
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    const blob = new Blob([html], { type: 'text/html' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'yannick-guerisseur.html';
+    a.click();
+    btn.style.display = '';
+  }, 300);
+}
+</script>
+
+</body>
+</html>
